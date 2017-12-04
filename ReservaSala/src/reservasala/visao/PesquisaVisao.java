@@ -5,12 +5,19 @@
  */
 package reservasala.visao;
 
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import reservasala.controle.PesquisaControle;
+
 /**
  *
  * @author helio
  */
 public class PesquisaVisao extends javax.swing.JPanel {
-
+    
     /**
      * Creates new form PesquisaVisao
      */
@@ -27,39 +34,159 @@ public class PesquisaVisao extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
+        filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 20), new java.awt.Dimension(10, 20), new java.awt.Dimension(17, 20));
+        jLabel2 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 20), new java.awt.Dimension(10, 20), new java.awt.Dimension(10, 20));
+        jTextPesquisa = new javax.swing.JTextField();
+        filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 20), new java.awt.Dimension(10, 20), new java.awt.Dimension(17, 20));
+        jButtonProcurar = new javax.swing.JButton();
+        filler6 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 20), new java.awt.Dimension(10, 20), new java.awt.Dimension(17, 20));
+        jPanel5 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextAreaResultado = new javax.swing.JTextArea();
+        jPanel6 = new javax.swing.JPanel();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(120, 120, 120));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Pesquisa");
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel1.setPreferredSize(new java.awt.Dimension(400, 300));
+        setMaximumSize(new java.awt.Dimension(400, 400));
+        setMinimumSize(new java.awt.Dimension(400, 400));
+        setLayout(new java.awt.BorderLayout());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        jPanel3.setMaximumSize(new java.awt.Dimension(400, 400));
+        jPanel3.setMinimumSize(new java.awt.Dimension(400, 400));
+        jPanel3.setPreferredSize(new java.awt.Dimension(400, 400));
+        jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.Y_AXIS));
+
+        jPanel7.setPreferredSize(new java.awt.Dimension(400, 400));
+        jPanel7.setLayout(new javax.swing.BoxLayout(jPanel7, javax.swing.BoxLayout.X_AXIS));
+        jPanel3.add(jPanel7);
+
+        jPanel9.setMaximumSize(new java.awt.Dimension(255, 60));
+        jPanel9.setMinimumSize(new java.awt.Dimension(155, 60));
+        jPanel9.setPreferredSize(new java.awt.Dimension(155, 60));
+        jPanel9.setLayout(new javax.swing.BoxLayout(jPanel9, javax.swing.BoxLayout.X_AXIS));
+        jPanel9.add(filler4);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel2.setText("Pesquisa");
+        jPanel9.add(jLabel2);
+
+        jPanel3.add(jPanel9);
+
+        jPanel4.setMaximumSize(new java.awt.Dimension(300, 60));
+        jPanel4.setMinimumSize(new java.awt.Dimension(300, 60));
+        jPanel4.setPreferredSize(new java.awt.Dimension(300, 60));
+        jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.X_AXIS));
+        jPanel4.add(filler1);
+
+        jTextPesquisa.setToolTipText("");
+        jTextPesquisa.setMargin(new java.awt.Insets(2, 5, 2, 2));
+        jTextPesquisa.setMaximumSize(new java.awt.Dimension(155, 25));
+        jTextPesquisa.setMinimumSize(new java.awt.Dimension(155, 25));
+        jTextPesquisa.setPreferredSize(new java.awt.Dimension(155, 25));
+        jTextPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextPesquisaActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jTextPesquisa);
+        jPanel4.add(filler3);
+
+        jButtonProcurar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButtonProcurar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reservasala/images/search.png"))); // NOI18N
+        jButtonProcurar.setMaximumSize(new java.awt.Dimension(100, 35));
+        jButtonProcurar.setMinimumSize(new java.awt.Dimension(100, 35));
+        jButtonProcurar.setPreferredSize(new java.awt.Dimension(100, 35));
+        jButtonProcurar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonProcurarActionPerformed(evt);
+            }
+        });
+        jButtonProcurar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jButtonProcurarKeyReleased(evt);
+            }
+        });
+        jPanel4.add(jButtonProcurar);
+        jPanel4.add(filler6);
+
+        jPanel3.add(jPanel4);
+
+        jPanel5.setMaximumSize(new java.awt.Dimension(255, 10));
+        jPanel5.setMinimumSize(new java.awt.Dimension(255, 10));
+        jPanel5.setPreferredSize(new java.awt.Dimension(255, 10));
+        jPanel5.setLayout(new javax.swing.BoxLayout(jPanel5, javax.swing.BoxLayout.X_AXIS));
+        jPanel3.add(jPanel5);
+
+        jPanel8.setMaximumSize(new java.awt.Dimension(300, 180));
+        jPanel8.setMinimumSize(new java.awt.Dimension(300, 180));
+        jPanel8.setPreferredSize(new java.awt.Dimension(300, 180));
+        jPanel8.setLayout(new javax.swing.BoxLayout(jPanel8, javax.swing.BoxLayout.X_AXIS));
+
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane1.setMinimumSize(new java.awt.Dimension(270, 150));
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(270, 150));
+
+        jTextAreaResultado.setToolTipText("");
+        jTextAreaResultado.setMaximumSize(new java.awt.Dimension(2500, 250000));
+        jTextAreaResultado.setMinimumSize(new java.awt.Dimension(290, 150));
+        jTextAreaResultado.setName(""); // NOI18N
+        jScrollPane1.setViewportView(jTextAreaResultado);
+
+        jPanel8.add(jScrollPane1);
+
+        jPanel3.add(jPanel8);
+
+        jPanel6.setPreferredSize(new java.awt.Dimension(400, 400));
+        jPanel6.setLayout(new javax.swing.BoxLayout(jPanel6, javax.swing.BoxLayout.X_AXIS));
+        jPanel3.add(jPanel6);
+
+        add(jPanel3, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProcurarActionPerformed
+        // TODO add your handling code here:
+        String resultado = null;
+        PesquisaControle p = new PesquisaControle();
+        try {
+            resultado = p.procurar(this.jTextPesquisa.getText().toString());
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(PesquisaVisao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.jTextAreaResultado.setText(resultado);
+    }//GEN-LAST:event_jButtonProcurarActionPerformed
+
+    private void jButtonProcurarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonProcurarKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonProcurarKeyReleased
+
+    private void jTextPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextPesquisaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextPesquisaActionPerformed
+
+    public JTextField getjTextPesquisa() {
+        return jTextPesquisa;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.Box.Filler filler1;
+    private javax.swing.Box.Filler filler3;
+    private javax.swing.Box.Filler filler4;
+    private javax.swing.Box.Filler filler6;
+    private javax.swing.JButton jButtonProcurar;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextAreaResultado;
+    private javax.swing.JTextField jTextPesquisa;
     // End of variables declaration//GEN-END:variables
 }

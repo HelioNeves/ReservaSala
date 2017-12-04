@@ -55,7 +55,7 @@ public class PrincipalControle {
         // Aqui é a tela de inicio da aplicação
         // Caso queira iniciar por formulário é so
         // mudar "login" por "form"
-        f.show(main, "login");
+        f.show(main, "forma");
       
         principal.revalidate();
     }
