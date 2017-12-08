@@ -8,6 +8,11 @@ package reservasala.visao;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.io.IOException;
+import java.util.Enumeration;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.AbstractButton;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -16,6 +21,8 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import reservasala.controle.FormularioControle;
+import reservasala.controle.PrincipalControle;
 
 /**
  *
@@ -23,12 +30,17 @@ import javax.swing.JTextField;
  */
 public class FormCVisao extends javax.swing.JPanel {
 
+    private FormularioControle form;   
     private ButtonGroup grupoEqui;
-
+    private JTextField txtOut;
+    
     /**
      * Creates new form Formulario
      */
-    public FormCVisao() {
+    public FormCVisao(FormularioControle f) {
+        
+        this.form = f;
+        
         setSize(500, 250);
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
@@ -90,7 +102,7 @@ public class FormCVisao extends javax.swing.JPanel {
 
         JLabel lblOut = new JLabel("Outro. Especificar: ");
         lblOut.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        JTextField txtOut = new JTextField();
+        txtOut = new JTextField();
         txtOut.setColumns(30);
 
         telaOut.add(lblOut);
@@ -104,6 +116,19 @@ public class FormCVisao extends javax.swing.JPanel {
         JButton btnCon = new JButton("Concluir");
         btnCon.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
+        btnCan.addActionListener((java.awt.event.ActionEvent evt) -> {
+            btnCancelarActionPerformed(evt);
+        });
+
+        btnCon.addActionListener((java.awt.event.ActionEvent evt) -> {
+            try {
+                btnProximoActionPerformed(evt);
+            } catch (IOException ex) {
+                Logger.getLogger(FormCVisao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        
+        
         telaBtns.add(btnCan);
         telaBtns.add(btnCon);
 
@@ -113,7 +138,37 @@ public class FormCVisao extends javax.swing.JPanel {
         add(telaOut);
         add(telaBtns);
     }
+    
+    private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
+        // TODO add your handling code here:
+        form.formC(getSelectedButtonText(grupoEqui) + " " + txtOut.getText());
+        PrincipalControle.atualizaTela("home");       
+        form.print();
+        limpaTela();
+    }
 
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {
+        PrincipalControle.atualizaTela("home");
+        limpaTela();
+    }
+
+    public void limpaTela() {       
+        txtOut.setText("");
+    }
+    
+    public String getSelectedButtonText(ButtonGroup buttonGroup) {
+        for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
+            AbstractButton button = buttons.nextElement();
+
+            if (button.isSelected()) {
+                return button.getText();
+            }
+        }
+
+        return "";
+    }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

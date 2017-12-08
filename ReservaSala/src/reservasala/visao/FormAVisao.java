@@ -11,6 +11,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.util.Enumeration;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
@@ -21,12 +22,16 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
+import reservasala.controle.FormularioControle;
+import reservasala.controle.PrincipalControle;
 
 /**
  *
  * @author helio
  */
 public class FormAVisao extends javax.swing.JPanel {
+
+    private FormularioControle form;
 
     private JComboBox comboGrad;
     private JComboBox comboPos;
@@ -36,14 +41,18 @@ public class FormAVisao extends javax.swing.JPanel {
     private JTextField textEmail;
     private ButtonGroup gruAtiv;
     private JTextField textOutra;
-    
+
     private JButton btnProximo;
     private JButton btnCancelar;
 
     /**
      * Creates new form Formulario
+     * @param f
      */
-    public FormAVisao() {
+    public FormAVisao(FormularioControle f) {
+
+        this.form = f;
+
         setMaximumSize(new java.awt.Dimension(400, 400));
         setMinimumSize(new java.awt.Dimension(400, 400));
         setPreferredSize(new java.awt.Dimension(400, 400));
@@ -66,7 +75,7 @@ public class FormAVisao extends javax.swing.JPanel {
         comboGrad.addItem("Fonoaudiologia");
         comboGrad.addItem("Medicina");
         comboGrad.addItem("Psicologia");
-        
+
         JLabel posgrad = new JLabel("Pós-Graduação");
         posgrad.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
@@ -156,13 +165,16 @@ public class FormAVisao extends javax.swing.JPanel {
 
         btnCancelar = new JButton("Cancelar");
         btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        btnCancelar.addActionListener((java.awt.event.ActionEvent evt) -> {
+            btnCancelarActionPerformed(evt);
+        });
 
         btnProximo = new JButton("Proximo");
         btnProximo.setFont(new Font("Tahoma", Font.PLAIN, 13));
         btnProximo.addActionListener((java.awt.event.ActionEvent evt) -> {
             btnProximoActionPerformed(evt);
         });
-        
+
         painelBtns.add(btnCancelar);
         painelBtns.add(btnProximo);
 
@@ -170,20 +182,31 @@ public class FormAVisao extends javax.swing.JPanel {
         add(painelAtividade, BorderLayout.CENTER);
         add(painelBtns, BorderLayout.SOUTH);
     }
-    
-    private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
-        System.out.println(comboGrad.getSelectedItem());
-        System.out.println(comboPos.getSelectedItem());
-        System.out.println(textOutro.getText());
-        System.out.println(textSol.getText());
-        System.out.println(textTel.getText());
-        System.out.println(textEmail.getText());
-        System.out.println(getSelectedButtonText(gruAtiv));
-        System.out.println(textOutra.getText());
-    }                                        
 
-        public String getSelectedButtonText(ButtonGroup buttonGroup) {
+    private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:       
+        form.formA(comboGrad.getSelectedItem().toString(), comboPos.getSelectedItem().toString(), textOutro.getText(), textSol.getText(), textTel.getText(), textEmail.getText(), getSelectedButtonText(gruAtiv));
+        PrincipalControle.atualizaTela("formb");
+        limpaTela();
+    }
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {
+        PrincipalControle.atualizaTela("home");
+        limpaTela();
+    }
+
+    public void limpaTela() {
+        comboGrad.setSelectedIndex(-1);
+        comboPos.setSelectedIndex(-1);
+        textOutro.setText("");
+        textSol.setText("");
+        textTel.setText("");
+        textEmail.setText("");
+        gruAtiv.clearSelection();
+        textOutra.setText("");
+    }
+
+    public String getSelectedButtonText(ButtonGroup buttonGroup) {
         for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
             AbstractButton button = buttons.nextElement();
 
@@ -192,10 +215,9 @@ public class FormAVisao extends javax.swing.JPanel {
             }
         }
 
-        return null;
+        return "";
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

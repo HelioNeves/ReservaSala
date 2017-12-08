@@ -14,17 +14,30 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import reservasala.controle.FormularioControle;
+import reservasala.controle.PrincipalControle;
 
 /**
  *
  * @author helio
  */
 public class FormBVisao extends javax.swing.JPanel {
-
+    
+    private FormularioControle form;
+   
+    private JTextField txtData;
+    private JTextField txtPeriodo;
+    private JComboBox boxDia;
+    private JComboBox boxHora;
+    private JTextField txtAlunos;
+    
     /**
      * Creates new form Formulario
      */
-    public FormBVisao() {
+    public FormBVisao(FormularioControle f) {
+        
+        this.form = f;        
+        
         setSize(500, 200);
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
@@ -33,14 +46,14 @@ public class FormBVisao extends javax.swing.JPanel {
 
         JLabel lblData = new JLabel("Data: (dd/mm/aa) ");
         lblData.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        JTextField txtData = new JTextField();
+        txtData = new JTextField();
         txtData.setHorizontalAlignment(SwingConstants.LEFT);
         txtData.setFont(new Font("Tahoma", Font.PLAIN, 13));
         txtData.setColumns(5);
 
         JLabel lblPeriodo = new JLabel("Período - início e término: (dd/mm/aa á dd/mm/aa) ");
         lblPeriodo.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        JTextField txtPeriodo = new JTextField();
+        txtPeriodo = new JTextField();
         txtPeriodo.setHorizontalAlignment(SwingConstants.LEFT);
         txtPeriodo.setFont(new Font("Tahoma", Font.PLAIN, 13));
         txtPeriodo.setColumns(20);
@@ -59,7 +72,7 @@ public class FormBVisao extends javax.swing.JPanel {
 
         JLabel lblDia = new JLabel("Dia da semana: ");
         lblDia.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        JComboBox boxDia = new JComboBox();
+        boxDia = new JComboBox();
         boxDia.setFont(new Font("Tahoma", Font.PLAIN, 13));
         boxDia.addItem(" ");
         boxDia.addItem("Segunda-feira");
@@ -71,7 +84,7 @@ public class FormBVisao extends javax.swing.JPanel {
 
         JLabel lblHora = new JLabel("Horário: ");
         lblHora.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        JComboBox boxHora = new JComboBox();
+        boxHora = new JComboBox();
         boxHora.setFont(new Font("Tahoma", Font.PLAIN, 13));
         boxHora.addItem(" ");
         boxHora.addItem("7h ás 8h");
@@ -105,7 +118,7 @@ public class FormBVisao extends javax.swing.JPanel {
 
         JLabel lblAlunos = new JLabel("Previsão de número de alunos: ");
         lblAlunos.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        JTextField txtAlunos = new JTextField();
+        txtAlunos = new JTextField();
         txtAlunos.setFont(new Font("Tahoma", Font.PLAIN, 13));
         txtAlunos.setColumns(20);
 
@@ -123,6 +136,16 @@ public class FormBVisao extends javax.swing.JPanel {
         JButton btnProximo = new JButton("Próximo");
         btnProximo.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
+        btnCancelar.addActionListener((java.awt.event.ActionEvent evt) -> {
+            btnCancelarActionPerformed(evt);
+        });
+        
+        btnProximo.addActionListener((java.awt.event.ActionEvent evt) -> {
+            btnProximoActionPerformed(evt);
+        });
+        
+        
+        
         telaBtns.add(btnCancelar);
         telaBtns.add(btnProximo);
 
@@ -131,7 +154,27 @@ public class FormBVisao extends javax.swing.JPanel {
         add(telaAlunos);
         add(telaBtns);
     }
+   
+    private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+        form.formB(txtData.getText(), txtPeriodo.getText(), boxDia.getSelectedItem().toString() + " " + boxHora.getSelectedItem().toString(), txtAlunos.getText());
+        PrincipalControle.atualizaTela("formc");
+        limpaTela();
+    }
 
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {
+        PrincipalControle.atualizaTela("home");
+        limpaTela();
+    }
+    
+    public void limpaTela() {       
+        boxDia.setSelectedIndex(-1);
+        boxHora.setSelectedIndex(-1);
+        txtData.setText("");
+        txtAlunos.setText("");
+        txtPeriodo.setText("");
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

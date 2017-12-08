@@ -51,22 +51,22 @@ public class PesquisaVisao extends javax.swing.JPanel {
         jTextAreaResultado = new javax.swing.JTextArea();
         jPanel6 = new javax.swing.JPanel();
 
-        setMaximumSize(new java.awt.Dimension(400, 400));
-        setMinimumSize(new java.awt.Dimension(400, 400));
+        setMaximumSize(new java.awt.Dimension(500, 500));
+        setMinimumSize(new java.awt.Dimension(500, 500));
         setLayout(new java.awt.BorderLayout());
 
-        jPanel3.setMaximumSize(new java.awt.Dimension(400, 400));
-        jPanel3.setMinimumSize(new java.awt.Dimension(400, 400));
-        jPanel3.setPreferredSize(new java.awt.Dimension(400, 400));
+        jPanel3.setMaximumSize(new java.awt.Dimension(500, 500));
+        jPanel3.setMinimumSize(new java.awt.Dimension(500, 500));
+        jPanel3.setPreferredSize(new java.awt.Dimension(500, 500));
         jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.Y_AXIS));
 
         jPanel7.setPreferredSize(new java.awt.Dimension(400, 400));
         jPanel7.setLayout(new javax.swing.BoxLayout(jPanel7, javax.swing.BoxLayout.X_AXIS));
         jPanel3.add(jPanel7);
 
-        jPanel9.setMaximumSize(new java.awt.Dimension(255, 60));
-        jPanel9.setMinimumSize(new java.awt.Dimension(155, 60));
-        jPanel9.setPreferredSize(new java.awt.Dimension(155, 60));
+        jPanel9.setMaximumSize(new java.awt.Dimension(138, 44));
+        jPanel9.setMinimumSize(new java.awt.Dimension(138, 44));
+        jPanel9.setPreferredSize(new java.awt.Dimension(138, 44));
         jPanel9.setLayout(new javax.swing.BoxLayout(jPanel9, javax.swing.BoxLayout.X_AXIS));
         jPanel9.add(filler4);
 
@@ -82,6 +82,7 @@ public class PesquisaVisao extends javax.swing.JPanel {
         jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.X_AXIS));
         jPanel4.add(filler1);
 
+        jTextPesquisa.setText("Solicitante");
         jTextPesquisa.setToolTipText("");
         jTextPesquisa.setMargin(new java.awt.Insets(2, 5, 2, 2));
         jTextPesquisa.setMaximumSize(new java.awt.Dimension(155, 25));
@@ -121,19 +122,22 @@ public class PesquisaVisao extends javax.swing.JPanel {
         jPanel5.setLayout(new javax.swing.BoxLayout(jPanel5, javax.swing.BoxLayout.X_AXIS));
         jPanel3.add(jPanel5);
 
-        jPanel8.setMaximumSize(new java.awt.Dimension(300, 180));
-        jPanel8.setMinimumSize(new java.awt.Dimension(300, 180));
-        jPanel8.setPreferredSize(new java.awt.Dimension(300, 180));
+        jPanel8.setMaximumSize(new java.awt.Dimension(300, 250));
+        jPanel8.setMinimumSize(new java.awt.Dimension(300, 250));
+        jPanel8.setPreferredSize(new java.awt.Dimension(300, 250));
         jPanel8.setLayout(new javax.swing.BoxLayout(jPanel8, javax.swing.BoxLayout.X_AXIS));
 
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        jScrollPane1.setMinimumSize(new java.awt.Dimension(270, 150));
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(270, 150));
+        jScrollPane1.setMaximumSize(new java.awt.Dimension(300, 260));
+        jScrollPane1.setMinimumSize(new java.awt.Dimension(300, 260));
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(300, 260));
 
+        jTextAreaResultado.setEditable(false);
         jTextAreaResultado.setToolTipText("");
-        jTextAreaResultado.setMaximumSize(new java.awt.Dimension(2500, 250000));
-        jTextAreaResultado.setMinimumSize(new java.awt.Dimension(290, 150));
+        jTextAreaResultado.setMaximumSize(new java.awt.Dimension(270, 220));
+        jTextAreaResultado.setMinimumSize(new java.awt.Dimension(270, 220));
         jTextAreaResultado.setName(""); // NOI18N
+        jTextAreaResultado.setPreferredSize(new java.awt.Dimension(270, 220));
         jScrollPane1.setViewportView(jTextAreaResultado);
 
         jPanel8.add(jScrollPane1);

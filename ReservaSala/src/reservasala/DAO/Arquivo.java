@@ -6,9 +6,11 @@
 package reservasala.DAO;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -40,14 +42,30 @@ public class Arquivo {
         return array;
     }
     
+    public void escreverArquivo(String path, String conteudo) throws IOException{
+                
+        BufferedWriter wr;
+        try (FileWriter write = new FileWriter(path, true)) {
+            wr = new BufferedWriter(write);
+            wr.write(conteudo);
+            wr.newLine();
+            wr.flush();
+        }
+		wr.close();
+    }
+    
     public String pesquisarArquivo(String path, String alvo) throws FileNotFoundException{
-        String resultado = null;
+        String resultado = "";
         
         Scanner scan = new Scanner(new File(path));
         while(scan.hasNext()){
             String line = scan.nextLine().toLowerCase();
-            if(line.contains(alvo)){
-                resultado.concat(line + "\n");
+            if(line.contains("#" + alvo.toLowerCase())){
+                for(int i = 0; i < 12; i++){
+                    line = scan.nextLine();
+                    System.out.println(line);
+                    resultado = resultado + line + "\n";
+                }
             }
         }    
         

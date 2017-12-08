@@ -22,8 +22,8 @@ import reservasala.visao.PrincipalVisao;
  */
 public class PrincipalControle {  
         static JFrame principal;
-        static JPanel main;
-
+        static JPanel main;       
+        
         public static void main(String[] args) {
         // TODO code application logic here          
         principal = new PrincipalVisao();
@@ -31,14 +31,17 @@ public class PrincipalControle {
         principal.setVisible(true);
         estadoMenu(principal, false);       
         
+        // Instanciando o Controle do Formulario
+        FormularioControle form = new FormularioControle();        
+        
         // Instanciar os JPanels
         main = PrincipalVisao.getMain();        
         JPanel login = new LoginVisao();
         JPanel inicio = new Home();
         JPanel pesquisa = new PesquisaVisao();
-        JPanel formA = new FormAVisao();
-        JPanel formB = new FormBVisao();
-        JPanel formC = new FormCVisao();
+        JPanel formA = new FormAVisao(form);
+        JPanel formB = new FormBVisao(form);
+        JPanel formC = new FormCVisao(form);
         
         // Adicionar os JPanels ao CardLayout
         main.add(inicio, "home");
@@ -55,7 +58,7 @@ public class PrincipalControle {
         // Aqui é a tela de inicio da aplicação
         // Caso queira iniciar por formulário é so
         // mudar "login" por "form"
-        f.show(main, "forma");
+        f.show(main, "login");
       
         principal.revalidate();
     }
